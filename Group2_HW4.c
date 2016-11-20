@@ -18,6 +18,10 @@ void PrintBikeTrip(BikeTrip t, FILE *outFile);
 void PrintArray(BikeTrip tripArray[], int arraySize, FILE *outfile);
 void FindMaxDuration(BikeTrip arrayIn[], int arraySize, FILE* outFile);
 int TripsInHr(BikeTrip arrayIn[], int arraySize, int hour);
+//Following three function declarations for question 7-Jack
+int FindTripsStartStationId(BikeTrip arrayIn[], int arraySize, int station);
+int FindTripsEndStationId(BikeTrip arrayIn[], int arraySize, int station);
+int TripsInStationPair(BikeTrip arrayIn[], int arraySize, int startStation, int endStation);
 
 //main
 int main(void)
@@ -62,7 +66,15 @@ int main(void)
 
    //At the end of main( ) close the output file stream
    fclose(outputFileStream);
+	
+   /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+   //Testing portion for question 7-Jack
+   fprintf(outFile, "%d trips started at your selected station.\n" , FindTripsStartStationId(tripArray[], 5010, 31263));
+   fprintf(outFile, "%d trips ended at your selected station.\n" , FindTripsEndStationId(tripArray[], 5010, 31101));
+   fprintf(outFile, "%d trips between your selected station pair.\n" , TripsInStationPair(tripArray[], 5010, 31200, 31201));
+   /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
    return 0;
+	
 }
 /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 //  This function prints the longest trip
@@ -114,4 +126,39 @@ void PrintBikeTrip(BikeTrip t, FILE *outFile){
 }
 /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 
-
+/*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*  These functions answer question 7-Jack           */
+//First function finds number of trips started from a station
+int FindTripsStartStationId(BikeTrip arrayIn[], int arraySize, int station) {
+	int i = 0;
+	int numTrips = 0;
+	for (i = 0; i < arraySize; i++) {
+		if (BikeTrip[i].startStationId == station) {
+			numTrips++;
+		}
+	}
+	return numTrips;
+}
+//This function finds number of trips ended at a station
+int FindTripsEndStationId(BikeTrip arrayIn[], int arraySize, int station) {
+	int i = 0;
+	int numTrips = 0;
+	for (i = 0; i < arraySize; i++) {
+		if (BikeTrip[i].endStationId == station) {
+			numTrips++;
+		}
+	}
+	return numTrips;
+}
+//This function finds number of trips started and ended between a pair of stations
+int TripsInStationPair(BikeTrip arrayIn[], int arraySize, int startStation, int endStation) {
+	int i = 0;
+	int numTrips = 0;
+	for (i = 0; i < arraySize; i++) {
+		if ((BikeTrip[i].startStationId == startStation) && (BikeTrip[i].endStationId == endStation)) {
+			numTrips++;
+		}
+	}
+	return numTrips;
+}
+/*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
