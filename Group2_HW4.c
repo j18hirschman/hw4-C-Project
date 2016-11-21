@@ -69,9 +69,9 @@ int main(void)
 	
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
    //Testing portion for question 7-Jack
-   fprintf(outFile, "%d trips started at your selected station.\n" , FindTripsStartStationId(tripArray[], 5010, 31263));
-   fprintf(outFile, "%d trips ended at your selected station.\n" , FindTripsEndStationId(tripArray[], 5010, 31101));
-   fprintf(outFile, "%d trips between your selected station pair.\n" , TripsInStationPair(tripArray[], 5010, 31200, 31201));
+   fprintf(outputFileStream, "%d trips started at your selected station.\n" , FindTripsStartStationId(tripArray, 5010, 31263));
+   fprintf(outputFileStream, "%d trips ended at your selected station.\n" , FindTripsEndStationId(tripArray, 5010, 31101));
+   fprintf(outputFileStream, "%d trips between your selected station pair.\n" , TripsInStationPair(tripArray, 5010, 31200, 31201));
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
    return 0;
 	
@@ -133,7 +133,7 @@ int FindTripsStartStationId(BikeTrip arrayIn[], int arraySize, int station) {
 	int i = 0;
 	int numTrips = 0;
 	for (i = 0; i < arraySize; i++) {
-		if (BikeTrip[i].startStationId == station) {
+		if (arrayIn[i].startStationId == station) {
 			numTrips++;
 		}
 	}
@@ -144,7 +144,7 @@ int FindTripsEndStationId(BikeTrip arrayIn[], int arraySize, int station) {
 	int i = 0;
 	int numTrips = 0;
 	for (i = 0; i < arraySize; i++) {
-		if (BikeTrip[i].endStationId == station) {
+		if (arrayIn[i].endStationId == station) {
 			numTrips++;
 		}
 	}
@@ -155,7 +155,7 @@ int TripsInStationPair(BikeTrip arrayIn[], int arraySize, int startStation, int 
 	int i = 0;
 	int numTrips = 0;
 	for (i = 0; i < arraySize; i++) {
-		if ((BikeTrip[i].startStationId == startStation) && (BikeTrip[i].endStationId == endStation)) {
+		if ((arrayIn[i].startStationId == startStation) && (arrayIn[i].endStationId == endStation)) {
 			numTrips++;
 		}
 	}
