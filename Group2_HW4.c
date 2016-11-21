@@ -129,7 +129,7 @@ void PrintBikeTrip(BikeTrip t, FILE *outFile){
 /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 /*  These functions answer question 7-Jack           */
 //First function finds number of trips started from a station
-int FindTripsStartStationId(BikeTrip arrayIn[], int arraySize, int station) {
+int FindTripsStartStationId(const BikeTrip arrayIn[], int arraySize, int station) {
 	int i = 0;
 	int numTrips = 0;
 	for (i = 0; i < arraySize; i++) {
@@ -140,7 +140,7 @@ int FindTripsStartStationId(BikeTrip arrayIn[], int arraySize, int station) {
 	return numTrips;
 }
 //This function finds number of trips ended at a station
-int FindTripsEndStationId(BikeTrip arrayIn[], int arraySize, int station) {
+int FindTripsEndStationId(const BikeTrip arrayIn[], int arraySize, int station) {
 	int i = 0;
 	int numTrips = 0;
 	for (i = 0; i < arraySize; i++) {
@@ -151,7 +151,7 @@ int FindTripsEndStationId(BikeTrip arrayIn[], int arraySize, int station) {
 	return numTrips;
 }
 //This function finds number of trips started and ended between a pair of stations
-int TripsInStationPair(BikeTrip arrayIn[], int arraySize, int startStation, int endStation) {
+int TripsInStationPair(const BikeTrip arrayIn[], int arraySize, int startStation, int endStation) {
 	int i = 0;
 	int numTrips = 0;
 	for (i = 0; i < arraySize; i++) {
