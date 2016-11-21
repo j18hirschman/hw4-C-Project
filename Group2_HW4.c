@@ -64,17 +64,17 @@ int main(void)
      PrintArray( tripArray, elements, outputFileStream );
      PrintBikeTrip( tripArray[3], outputFileStream );
 
-   //At the end of main( ) close the output file stream
-   fclose(outputFileStream);
-	
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
    //Testing portion for question 7-Jack
    fprintf(outputFileStream, "%d trips started at your selected station.\n" , FindTripsStartStationId(tripArray, 5010, 31263));
    fprintf(outputFileStream, "%d trips ended at your selected station.\n" , FindTripsEndStationId(tripArray, 5010, 31101));
    fprintf(outputFileStream, "%d trips between your selected station pair.\n" , TripsInStationPair(tripArray, 5010, 31200, 31201));
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-   return 0;
+   
+   //At the end of main( ) close the output file stream
+   fclose(outputFileStream);
 	
+   return 0;	
 }
 /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 //  This function prints the longest trip
