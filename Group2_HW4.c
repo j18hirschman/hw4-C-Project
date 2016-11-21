@@ -19,9 +19,9 @@ void PrintArray(BikeTrip tripArray[], int arraySize, FILE *outfile);
 void FindMaxDuration(BikeTrip arrayIn[], int arraySize, FILE* outFile);
 int TripsInHr(BikeTrip arrayIn[], int arraySize, int hour);
 //Following three function declarations for question 7-Jack
-int FindTripsStartStationId(BikeTrip arrayIn[], int arraySize, int station);
-int FindTripsEndStationId(BikeTrip arrayIn[], int arraySize, int station);
-int TripsInStationPair(BikeTrip arrayIn[], int arraySize, int startStation, int endStation);
+int FindTripsStartStationId(const BikeTrip arrayIn[], int arraySize, int station);
+int FindTripsEndStationId(const BikeTrip arrayIn[], int arraySize, int station);
+int TripsInStationPair(const BikeTrip arrayIn[], int arraySize, int startStation, int endStation);
 
 //main
 int main(void)
