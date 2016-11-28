@@ -5,8 +5,10 @@
 #include <stdio.h>
 #define FILE_IN "bikeData5000.txt"
 #define FILE_OUT "output.txt"
+#define ARRAY_SIZE 5010
 
 //  Define structure to represent a BikeTrip  
+//  DURATION is recorded in MILLISECONDS
 typedef struct BikeTrip_struct{
    char membershipType[10];
    int startStationId, endStationId, bikeId,
@@ -18,6 +20,9 @@ void PrintBikeTrip(BikeTrip t, FILE *outFile);
 void PrintArray(BikeTrip tripArray[], int arraySize, FILE *outfile);
 void FindMaxDuration(BikeTrip arrayIn[], int arraySize, FILE* outFile);
 int TripsInHr(BikeTrip arrayIn[], int arraySize, int hour);
+//Function declarations for question 6 - Riley
+int TripsInTimeInterval(BikeTrip arrayIn[], int arraySize, int lowDuration, int highDuration);
+int ReturnMaxDuration(BikeTrip arrayIn[], int arraySize);
 //Following three function declarations for question 7-Jack
 int FindTripsStartStationId(const BikeTrip arrayIn[], int arraySize, int station);
 int FindTripsEndStationId(const BikeTrip arrayIn[], int arraySize, int station);
@@ -64,9 +69,26 @@ int main(void)
      PrintArray( tripArray, elements, outputFileStream );
      PrintBikeTrip( tripArray[3], outputFileStream );
 
+
+   /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+   //Testing portion for question 6 - Riley
+   //FIXME: How should the function handle an edge number, like 10.93?
+   //FIXME: How to handle 30?
+   //FIXME: Is there a better solution than ReturnMaxDuration?
+   //FIXME: Make sure that this fully answers the prompt...
+
+   fprintf(outputFileStream, "%d trips lasted between %d and %d minutes.\n", 
+		TripsInTimeInterval(tripArray, 5010, 0, 10), 0, 10);
+   fprintf(outputFileStream, "%d trips lasted between %d and %d minutes.\n",
+	   	TripsInTimeInterval(tripArray, ARRAY_SIZE, 11,20), 11, 20);
+   fprintf(outputFileStream, "%d trips lasted between %d and %d minutes.\n",
+		TripsInTimeInterval(tripArray, ARRAY_SIZE, 21,30), 21, 30);
+   fprintf(outputFileStream, "%d trips were longer than 30 minutes.\n",
+		TripsInTimeInterval(tripArray, ARRAY_SIZE, 31, ReturnMaxDuration(tripArray, ARRAY_SIZE)));
+
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
    //Testing portion for question 7-Jack
-   fprintf(outputFileStream, "%d trips started at your selected station.\n" , FindTripsStartStationId(tripArray, 5010, 31263));
+   fprintf(outputFileStream, "\n%d trips started at your selected station.\n" , FindTripsStartStationId(tripArray, 5010, 31263));
    fprintf(outputFileStream, "%d trips ended at your selected station.\n" , FindTripsEndStationId(tripArray, 5010, 31101));
    fprintf(outputFileStream, "%d trips between your selected station pair.\n" , TripsInStationPair(tripArray, 5010, 31200, 31201));
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -125,6 +147,34 @@ void PrintBikeTrip(BikeTrip t, FILE *outFile){
    return;
 }
 /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//Function for question 6
+
+/*   This function prints the number of trips for an interval */
+int 
+TripsInTimeInterval(BikeTrip arrayIn[], int arraySize, int lowDuration, int highDuration)
+{
+	int i = 0, numTrips = 0, currDuration;
+	for (i = 0; i < arraySize; ++i) {
+		currDuration = arrayIn[i].duration / 60000;
+		if (currDuration >= lowDuration && currDuration <= highDuration) {
+			++numTrips;
+		}
+	}
+	return numTrips;	
+}	
+
+/*   This function finds the highest value of duration       */
+int
+ReturnMaxDuration(BikeTrip arrayIn[], int arraySize) 
+{
+	int i = 0, maxDuration = arrayIn[0].duration;
+	for (i = 1; i < arraySize; ++i) {
+		if (arrayIn[i].duration > maxDuration) {
+			maxDuration = arrayIn[i].duration;
+		}
+	}
+	return maxDuration;
+}
 
 /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 /*  These functions answer question 7-Jack           */
