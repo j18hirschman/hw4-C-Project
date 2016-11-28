@@ -72,11 +72,14 @@ int main(void)
 
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
    //Testing portion for question 6 - Riley
-   //FIXME: How should the function handle an edge number, like 10.93?
-   //FIXME: How to handle 30?
-   //FIXME: Is there a better solution than ReturnMaxDuration?
-   //FIXME: Make sure that this fully answers the prompt...
-
+	
+   /*The assumption is that the high duration includes numbers have the same integer part.
+    *For example, if the high duration is 10 minutes, 10.93 minutes will be within that range.
+   
+    *When considering trips that are longer than 30 minutes, the assumption above is used.
+    *So, the range actually begins at 31 because (for example) 30.99 belongs between 21 and 30.
+    */	
+	
    fprintf(outputFileStream, "%d trips lasted between %d and %d minutes.\n", 
 		TripsInTimeInterval(tripArray, 5010, 0, 10), 0, 10);
    fprintf(outputFileStream, "%d trips lasted between %d and %d minutes.\n",
