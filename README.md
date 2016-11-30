@@ -6,7 +6,7 @@ The program handles data from a bike share system and performs various calculati
 
 
 Arian Modarres
-
+arian@gwu.edu
 
 Riley Kennedy 
 rileykennedy@gwu.edu
