@@ -20,7 +20,7 @@ void PrintBikeTrip(BikeTrip t, FILE *outFile);
 void PrintArray(BikeTrip tripArray[], int arraySize, FILE *outfile);
 void FindMaxDuration(BikeTrip arrayIn[], int arraySize, FILE* outFile);
 int TripsInHr(BikeTrip arrayIn[], int arraySize, int hour);
-//Funuction declarations for questions 1,2,3 - Yue (Joey)
+//Function declarations for questions 1,2,3 - Yue (Joey)
 int TripsInHr(BikeTrip arrayIn[], int arraySize, int hour);
 int FindCircularTrips(BikeTrip arrayIn[], int arraySize);
 float PercentCasual(BikeTrip arrayIn[], int arraySize);
