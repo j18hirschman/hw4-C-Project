@@ -20,6 +20,10 @@ void PrintBikeTrip(BikeTrip t, FILE *outFile);
 void PrintArray(BikeTrip tripArray[], int arraySize, FILE *outfile);
 void FindMaxDuration(BikeTrip arrayIn[], int arraySize, FILE* outFile);
 int TripsInHr(BikeTrip arrayIn[], int arraySize, int hour);
+//Function declarations for questions 1,2,3 - Yue (Joey)
+int TripsInHr(BikeTrip arrayIn[], int arraySize, int hour);
+int FindCircularTrips(BikeTrip arrayIn[], int arraySize);
+float PercentCasual(BikeTrip arrayIn[], int arraySize);
 //Function declarations for question 6 - Riley
 int TripsInTimeInterval(BikeTrip arrayIn[], int arraySize, int lowDuration, int highDuration);
 int ReturnMaxDuration(BikeTrip arrayIn[], int arraySize);
@@ -68,6 +72,8 @@ int main(void)
      fprintf(outputFileStream, "\n Print the whole array of BikeTrip structs\n\n" );
      PrintArray( tripArray, elements, outputFileStream );
      PrintBikeTrip( tripArray[3], outputFileStream );
+ /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+   //Testing portion for question 1,2,3 - Yue (Joey)
 
 
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -149,6 +155,9 @@ void PrintBikeTrip(BikeTrip t, FILE *outFile){
 			t.startHr, t.startMin, t.duration, t.duration/1000/60);
    return;
 }
+//Function for question 1
+
+
 /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 //Function for question 6
 
@@ -169,6 +178,7 @@ TripsInTimeInterval(BikeTrip arrayIn[], int arraySize, int lowDuration, int high
 /*   This function finds the highest value of duration       */
 int
 ReturnMaxDuration(BikeTrip arrayIn[], int arraySize) 
+  
 {
 	int i = 0, maxDuration = arrayIn[0].duration;
 	for (i = 1; i < arraySize; ++i) {
