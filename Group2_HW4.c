@@ -77,14 +77,14 @@ int main(void)
 int i, x;
 	for (i = 1; i < 25; i++) {
      x = TripsInHr( tripArray, elements, i);
-	 fprintf(outputFileStream, "\n tripsinHr = %d at hour %d\n\n", x,i);
+	 fprintf(outputFileStream, "\n tripsinHr = %d at hour %d", x,i);
    }
    //Testing portion for question 2,3 - Yue (Joey)
-   fprintf(outputFileStream, "\n%d circular trips within station.\n" , FindCircularTrips(tripArray, 5010));
+   fprintf(outputFileStream, "\n\n%d circular trips within station.\n" , FindCircularTrips(tripArray, 5010));
    printf("\n%d circular trips within station.\n" , FindCircularTrips(tripArray, 5010));
    
-   fprintf(outputFileStream, "\n%f Percentage of casual users:\n" , PercentCasual(tripArray, 5010));
-   printf("\n%f Percentage of casual users:\n" , PercentCasual(tripArray, 5010));
+   fprintf(outputFileStream, "Percentage of casual users: %4.2f\%\n\n" , PercentCasual(tripArray, 5010));
+   printf("\n Percentage of casual users: %f\%\n" , PercentCasual(tripArray, 5010));
 
 
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -166,6 +166,7 @@ void PrintBikeTrip(BikeTrip t, FILE *outFile){
 			t.startHr, t.startMin, t.duration, t.duration/1000/60);
    return;
 }
+/*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 //function for question 2 - Yue (Joey) 
 int FindCircularTrips(BikeTrip arrayIn[], int arraySize)
 {
