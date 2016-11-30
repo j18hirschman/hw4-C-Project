@@ -1,7 +1,7 @@
 /*                                                            */
 /*  This program reads BikeTrip information from a data      */
 /*  file into an array and then prints the array              */
-
+#include <string.h>
 #include <stdio.h>
 #define FILE_IN "bikeData5000.txt"
 #define FILE_OUT "output.txt"
@@ -20,8 +20,7 @@ void PrintBikeTrip(BikeTrip t, FILE *outFile);
 void PrintArray(BikeTrip tripArray[], int arraySize, FILE *outfile);
 void FindMaxDuration(BikeTrip arrayIn[], int arraySize, FILE* outFile);
 int TripsInHr(BikeTrip arrayIn[], int arraySize, int hour);
-//Function declarations for questions 1,2,3 - Yue (Joey)
-int TripsInHr(BikeTrip arrayIn[], int arraySize, int hour);
+//Function declarations for questions 2,3 - Yue (Joey)
 int FindCircularTrips(BikeTrip arrayIn[], int arraySize);
 float PercentCasual(BikeTrip arrayIn[], int arraySize);
 //Function declarations for question 6 - Riley
@@ -73,7 +72,19 @@ int main(void)
      PrintArray( tripArray, elements, outputFileStream );
      PrintBikeTrip( tripArray[3], outputFileStream );
  /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-   //Testing portion for question 1,2,3 - Yue (Joey)
+   //Testing portion for question 1 - Yue (Joey)
+
+int i, x;
+	for (i = 1; i < 25; i++) {
+     x = TripsInHr( tripArray, elements, i);
+	 fprintf(outputFileStream, "\n tripsinHr = %d at hour %d\n\n", x,i);
+   }
+   //Testing portion for question 2,3 - Yue (Joey)
+   fprintf(outputFileStream, "\n%d circular trips within station.\n" , FindCircularTrips(tripArray, 5010));
+   printf("\n%d circular trips within station.\n" , FindCircularTrips(tripArray, 5010));
+   
+   fprintf(outputFileStream, "\n%f Percentage of casual users:\n" , PercentCasual(tripArray, 5010));
+   printf("\n%f Percentage of casual users:\n" , PercentCasual(tripArray, 5010));
 
 
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -155,8 +166,38 @@ void PrintBikeTrip(BikeTrip t, FILE *outFile){
 			t.startHr, t.startMin, t.duration, t.duration/1000/60);
    return;
 }
-//Function for question 1
+//function for question 2 - Yue (Joey) 
+int FindCircularTrips(BikeTrip arrayIn[], int arraySize)
+{
+	int i = 0;
+	int numTrips = 0;
+  for (i = 0; i < arraySize; i++) {
+		if (arrayIn[i].startStationId == arrayIn[i].endStationId) {
+       numTrips++;
+		}
+	}
+	return numTrips;
+}
 
+//function for question 3 - Yue (Joey)
+float PercentCasual(BikeTrip arrayIn[], int arraySize)
+{
+int i = 0;
+	float casuals = 0;
+  float regist = 0;
+  for (i = 0; i < arraySize; i++) {
+		if (strcmp(arrayIn[i].membershipType, "Casual") == 0) {
+       casuals++;
+		}
+    else if (strcmp(arrayIn[i].membershipType, "Registered") == 0) {
+       regist++;
+		}
+	}
+ printf("Casuals: %f \n", casuals);
+  printf("Registered: %f \n", regist);
+  float percentage = casuals/(casuals+regist);
+	return percentage*100;
+}
 
 /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 //Function for question 6
