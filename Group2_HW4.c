@@ -1,6 +1,7 @@
 /*                                                            */
 /*  This program reads BikeTrip information from a data      */
 /*  file into an array and then prints the array              */
+
 #include <string.h>
 #include <stdio.h>
 #define FILE_IN "bikeData5000.txt"
