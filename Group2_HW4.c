@@ -24,6 +24,9 @@ int TripsInHr(BikeTrip arrayIn[], int arraySize, int hour);
 //Function declarations for questions 2,3 - Yue (Joey)
 int FindCircularTrips(BikeTrip arrayIn[], int arraySize);
 float PercentCasual(BikeTrip arrayIn[], int arraySize);
+//Function declarations for question 4 and 5 - Arian
+int FindTripsBikeId(BikeTrip arrayIn[], int arraySize, int bike) 
+double FindAverageTripDuration(BikeTrip arrayIn[], int arraySize);
 //Function declarations for question 6 - Riley
 int TripsInTimeInterval(BikeTrip arrayIn[], int arraySize, int lowDuration, int highDuration);
 int ReturnMaxDuration(BikeTrip arrayIn[], int arraySize);
@@ -87,6 +90,29 @@ int i, x;
    fprintf(outputFileStream, "Percentage of casual users: %4.2f\%\n\n" , PercentCasual(tripArray, 5010));
    printf("\n Percentage of casual users: %f\%\n" , PercentCasual(tripArray, 5010));
 
+
+   /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/	 
+   //Testing portion for questions 4 and 5 - Arian
+	int i = 0;
+	int highid = tripArray[0].bikeId;
+	int hightrips = FindTripsBikeId(tripArray, elements, tripArray[0].bikeId);
+	//go through the array of bike trips
+	for (i = 0; i <	elements; i++) {
+		//if the number of trips for the selected bikeid is higher than the max make it the max
+		if (FindTripsBikeId(tripArray, elements, tripArray[i].bikeId) > hightrips) {
+			highid = tripArray[i].bikeId;
+			hightrips = FindTripsBikeId(tripArray, elements, tripArray[i].bikeId);
+		}
+	}
+	//print the bikeid with the highest trips and the number of trips
+	fprintf(outputFileStream, "\nBikeId with highest number of trips: %d", highid);
+	fprintf(outputFileStream, "\nNumber of trips: %d", hightrips);
+
+	//find the average duration
+	double avgduration = FindAverageTripDuration(tripArray, elements);
+	//print the average duration in ms and minutes
+	fprintf(outputFileStream, "\nAverage duration in milliseconds: %lf", avgduration*1000*60);
+        fprintf(outputFileStream, "\nAverage duration in minutes: %lf", avgduration);
 
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
    //Testing portion for question 6 - Riley
@@ -199,6 +225,38 @@ int i = 0;
   printf("Registered: %f \n", regist);
   float percentage = casuals/(casuals+regist);
 	return percentage*100;
+}
+
+/*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+//Function for questions 4 and 5 - Arian
+int FindTripsBikeId(BikeTrip arrayIn[], int arraySize, int bike) {
+	int i;
+	int count;
+	//this will set the count of number of trips to zero
+	count = 0;
+	//this will go through the array of bike trips
+	for (i = 0; i < arraySize; i++) {
+		//if the id of the selected trip is the same as the given id, add one to count
+		if (arrayIn[i].bikeId == bike) {
+			count++;
+		}
+	}
+	//returns our count
+	return count;
+}
+
+double FindAverageTripDuration(BikeTrip arrayIn[], int arraySize) {
+	int i;
+	double sum;
+	//this sets the sum to 0
+	sum = 0;
+	//this goes through the array for the bike trips
+	for (i = 0; i < arraySize; i++) {
+		//convert the duration of the selected trip to minutes and add it to sum
+		sum = sum + (arrayIn[i].duration/1000/60);
+	}
+	//this part returns the average, sum divided by the number of trips
+	return (double)sum / (double)arraySize;
 }
 
 /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
