@@ -25,7 +25,7 @@ int TripsInHr(BikeTrip arrayIn[], int arraySize, int hour);
 int FindCircularTrips(BikeTrip arrayIn[], int arraySize);
 float PercentCasual(BikeTrip arrayIn[], int arraySize);
 //Function declarations for question 4 and 5 - Arian
-int FindTripsBikeId(BikeTrip arrayIn[], int arraySize, int bike) 
+int FindTripsBikeId(BikeTrip arrayIn[], int arraySize, int bike);
 double FindAverageTripDuration(BikeTrip arrayIn[], int arraySize);
 //Function declarations for question 6 - Riley
 int TripsInTimeInterval(BikeTrip arrayIn[], int arraySize, int lowDuration, int highDuration);
@@ -93,7 +93,7 @@ int i, x;
 
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/	 
    //Testing portion for questions 4 and 5 - Arian
-	int i = 0;
+	i = 0;
 	int highid = tripArray[0].bikeId;
 	int hightrips = FindTripsBikeId(tripArray, elements, tripArray[0].bikeId);
 	//go through the array of bike trips
@@ -112,7 +112,7 @@ int i, x;
 	double avgduration = FindAverageTripDuration(tripArray, elements);
 	//print the average duration in ms and minutes
 	fprintf(outputFileStream, "\nAverage duration in milliseconds: %lf", avgduration*1000*60);
-        fprintf(outputFileStream, "\nAverage duration in minutes: %lf", avgduration);
+        fprintf(outputFileStream, "\nAverage duration in minutes: %lf\n\n", avgduration);
 
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
    //Testing portion for question 6 - Riley
