@@ -39,7 +39,7 @@ int TripsInStationPair(const BikeTrip arrayIn[], int arraySize, int startStation
 int main(void)
 {
    /*  Declare variables */
-   int k=0, elements;
+   int k=0, elements = 0;
    BikeTrip tripArray[5010];
 
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -87,8 +87,8 @@ int i, x;
    fprintf(outputFileStream, "\n\n%d circular trips within station.\n" , FindCircularTrips(tripArray, 5010));
    printf("\n%d circular trips within station.\n" , FindCircularTrips(tripArray, 5010));
    
-   fprintf(outputFileStream, "Percentage of casual users: %4.2f\%\n\n" , PercentCasual(tripArray, 5010));
-   printf("\n Percentage of casual users: %f\%\n" , PercentCasual(tripArray, 5010));
+   fprintf(outputFileStream, "Percentage of casual users: %4.2f percent\n\n" , PercentCasual(tripArray, 5010));
+   printf("\n Percentage of casual users: %f percent\n" , PercentCasual(tripArray, 5010));
 
 
    /*––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/	 
